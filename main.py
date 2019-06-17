@@ -7,6 +7,7 @@ import numpy as np
 
 nBoardSize = 75 + 2 #2 Borders
 Board = np.zeros([nBoardSize,nBoardSize],int)
+nFrames = 100
 
 #Some Initial Shapes
 
@@ -20,6 +21,16 @@ def LoadShape(b, s, x, y):
         for j in range(s.shape[1]):
             b[x+i+1,y+j+1]=s[i,j]  #Ignoring Borders
 
+#Update Board
+def Update(b):
+    nbrs=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+    for i in range(1,b.shape[0]-1):
+        for j in range(1,b.shape[1]-1):
+            s=0
+            for k in nbrs:
+                s+=b[i+k[0],j+k[1]]
+            b[i,j] = (1 if (s==2 or s==3) else 0)
+
 #Load a shape
 LoadShape(Board, sSpaceShip, 10, 10)
 
@@ -29,3 +40,13 @@ plt.imshow(Board)
 plt.axis("off")
 plt.savefig("Images/{:06d}.png".format(nFrameNo), bbox_inches='tight')
 plt.close()
+
+#Animation Loop
+while(nFrameNo<nFrames):
+    nFrameNo+=1
+    print(nFrameNo)
+    Update(Board)
+    plt.imshow(Board)
+    plt.axis("off")
+    plt.savefig("Images/{:06d}.png".format(nFrameNo), bbox_inches='tight')
+    plt.close()
