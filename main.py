@@ -9,11 +9,16 @@ nBoardSize = 75 + 2 #2 Borders
 Board = np.zeros([nBoardSize,nBoardSize],int)
 nFrames = 100
 
+#Shape Definer
+def DefineShape(sFileName):
+    return np.array([[1 if i=='#' else 0 for i in j.strip()] for j in open(sFileName,'r').read().strip().split('\n')])
+
+
+
 #Some Initial Shapes
 
 #Blinker
-sBlinker = np.loadtxt("Shapes/Blinker.txt",int)
-sSpaceShip = np.loadtxt("Shapes/SpaceShip.txt",int)
+sSpaceShip = DefineShape("Shapes/SpaceShip.txt")
 
 #Shape Loading Func
 def LoadShape(b, s, x, y):
@@ -37,7 +42,6 @@ def Update(b):
 
 #Load a shape
 LoadShape(Board, sSpaceShip, 10, 10)
-LoadShape(Board, sBlinker, 40, 40)
 
 #Display Image
 nFrameNo=0
