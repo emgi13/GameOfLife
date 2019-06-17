@@ -5,13 +5,14 @@ import numpy as np
 
 #Init the Board
 
-nBoardSize = 50 + 2 #2 Borders
+nBoardSize = 75 + 2 #2 Borders
 Board = np.zeros([nBoardSize,nBoardSize],int)
 
 #Some Initial Shapes
 
 #Blinker
-sBlinker = np.array([[0,1,0],[0,1,0],[0,1,0]])
+sBlinker = np.loadtxt("Shapes/Blinker.txt",int)
+sSpaceShip = np.loadtxt("Shapes/SpaceShip.txt",int)
 
 #Shape Loading Func
 def LoadShape(b, s, x, y):
@@ -20,7 +21,7 @@ def LoadShape(b, s, x, y):
             b[x+i+1,y+j+1]=s[i,j]  #Ignoring Borders
 
 #Load a shape
-LoadShape(Board, sBlinker, 10, 10)
+LoadShape(Board, sSpaceShip, 10, 10)
 
 #Display Image
 nFrameNo=0
