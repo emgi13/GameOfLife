@@ -7,7 +7,11 @@ import numpy as np
 
 nBoardSize = 50 + 2 #2 Borders
 Board = np.zeros([nBoardSize,nBoardSize],int)
-nFrames = 20
+nFrames = 100
+
+#Random Board
+np.random.seed(1307)
+RBoard = np.array([[0 if i==0 or j==0 or i==nBoardSize-1 or j==nBoardSize-1 else np.random.choice([0,1]) for i in range(nBoardSize)] for j in range(nBoardSize)])
 
 #Shape Definer
 def DefineShape(sFileName):
@@ -45,7 +49,7 @@ LoadShape(Board, sSpaceShip, 10, 10)
 
 #Display Image
 nFrameNo=0
-plt.imshow(Board)
+plt.imshow(RBoard)
 plt.axis("off")
 plt.savefig("Images/{:06d}.png".format(nFrameNo), bbox_inches='tight')
 plt.close()
@@ -54,8 +58,8 @@ plt.close()
 while(nFrameNo<nFrames):
     nFrameNo+=1
     print(nFrameNo)
-    Board=Update(Board)
-    plt.imshow(Board)
+    RBoard=Update(RBoard)
+    plt.imshow(RBoard)
     plt.axis("off")
     plt.savefig("Images/{:06d}.png".format(nFrameNo), bbox_inches='tight')
     plt.close()
