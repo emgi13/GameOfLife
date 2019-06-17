@@ -22,7 +22,7 @@ def DefineShape(sFileName):
 #Some Initial Shapes
 
 #Blinker
-sSpaceShip = DefineShape("Shapes/Snake.txt")
+sSpaceShip = DefineShape("Shapes/Explode.txt")
 
 #Shape Loading Func
 def LoadShape(b, s, x, y):
@@ -49,7 +49,7 @@ LoadShape(Board, sSpaceShip, 10, 10)
 
 #Display Image
 nFrameNo=0
-plt.imshow(RBoard)
+plt.imshow(Board)
 plt.axis("off")
 plt.savefig("Images/{:06d}.png".format(nFrameNo), bbox_inches='tight')
 plt.close()
@@ -58,8 +58,8 @@ plt.close()
 while(nFrameNo<nFrames):
     nFrameNo+=1
     print(nFrameNo)
-    RBoard=Update(RBoard)
-    plt.imshow(RBoard)
+    Board=Update(Board)
+    plt.imshow(Board)
     plt.axis("off")
     plt.savefig("Images/{:06d}.png".format(nFrameNo), bbox_inches='tight')
     plt.close()
