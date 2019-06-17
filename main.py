@@ -7,7 +7,7 @@ import numpy as np
 
 nBoardSize = 50 + 2 #2 Borders
 Board = np.zeros([nBoardSize,nBoardSize],int)
-nFrames = 100
+nFrames = 20
 
 #Shape Definer
 def DefineShape(sFileName):
@@ -18,7 +18,7 @@ def DefineShape(sFileName):
 #Some Initial Shapes
 
 #Blinker
-sSpaceShip = DefineShape("Shapes/Walker.txt")
+sSpaceShip = DefineShape("Shapes/Snake.txt")
 
 #Shape Loading Func
 def LoadShape(b, s, x, y):
